@@ -271,6 +271,103 @@
         </div>
       </main>
 
+      <main class="p-6 space-y-6" v-else>
+        <section id="cart" class="grid grid-cols-3 gap-6 col-span-3">
+          <div
+            class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+            v-for="cartItem in cart"
+            :key="cartItem.id"
+          >
+            <a href="#">
+              <img
+                class="rounded-t-lg"
+                :src="cartItem.img"
+                :alt="cartItem.subject"
+              />
+            </a>
+            <div class="p-5">
+              <a href="#">
+                <h5
+                  class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white"
+                >
+                  <span class="font-bold">Subject:</span> {{ cartItem.subject }}
+                </h5>
+              </a>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Location: {{ cartItem.location }}
+              </p>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                Price: £{{ cartItem.price }}
+              </p>
+              <button
+                class="flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                v-on:click="removeFromCart(cartItem.id)"
+              >
+                Remove from cart
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6 ml-2 -mr-1"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="checkout">
+          <form v-on:submit.prevent="checkout">
+            <div class="mb-6">
+              <label
+                for="name"
+                class="block mb-2 text-sm font-medium text-gray-900"
+                >Your name</label
+              >
+              <input
+                type="text"
+                id="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="John Doe"
+                v-model="name"
+                required
+              />
+              <small class="text-sm text-red-500" v-if="nameError">{{ nameError }}</small>
+            </div>
+            <div class="mb-6">
+              <label
+                for="phone"
+                class="block mb-2 text-sm font-medium text-gray-900"
+                >Your phone number</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="37278273678"
+                v-model="phone"
+                required
+              />
+              <small class="text-sm text-red-500" v-if="phoneError">{{ phoneError }}</small>
+            </div>
+            <button
+              type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-30"
+              :disabled="!isFormValid"
+            >
+              Checkout
+            </button>
+          </form>
+        </section>
+      </main>
+
     </div>
 
     <script src="./lessons.js"></script>
