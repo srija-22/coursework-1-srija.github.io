@@ -36,6 +36,241 @@
         </button>
       </header>
 
+      <main class="p-6 space-y-6" v-if="!showCart">
+        <section id="filters" class="">
+          <!-- Search -->
+
+          <form>
+            <label
+              for="default-search"
+              class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              >Search</label
+            >
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search lessons..."
+                required
+                v-model="searchValue"
+              />
+            </div>
+          </form>
+        </section>
+
+        <div class="grid lg:grid-cols-4 gap-10">
+          <aside class="space-y-8 w-full">
+            <!-- Sort -->
+
+            <div class="w-full">
+              <h3 class="mb-4 font-semibold text-gray-900">Sort by</h3>
+              <ul
+                class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              >
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="subject"
+                      type="radio"
+                      value="subject"
+                      name="sortBy"
+                      v-model="sortBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="subject"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Subject</label
+                    >
+                  </div>
+                </li>
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="location"
+                      type="radio"
+                      value="location"
+                      name="sortBy"
+                      v-model="sortBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="location"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Location</label
+                    >
+                  </div>
+                </li>
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="price"
+                      type="radio"
+                      value="price"
+                      name="sortBy"
+                      v-model="sortBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="price"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Price</label
+                    >
+                  </div>
+                </li>
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="availability"
+                      type="radio"
+                      value="availability"
+                      name="sortBy"
+                      v-model="sortBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="availability"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Availability</label
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Order -->
+
+            <div class="w-full">
+              <h3 class="mb-4 font-semibold text-gray-900">Order by</h3>
+              <ul
+                class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              >
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="ascending"
+                      type="radio"
+                      value="asc"
+                      name="orderBy"
+                      v-model="orderBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="ascending"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Ascending</label
+                    >
+                  </div>
+                </li>
+                <li
+                  class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600"
+                >
+                  <div class="flex items-center pl-3">
+                    <input
+                      id="descending"
+                      type="radio"
+                      value="desc"
+                      name="orderBy"
+                      v-model="orderBy"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      for="descending"
+                      class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Descending</label
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          <section id="lessons" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 col-span-3 w-full">
+            <div
+              class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+              v-for="lesson in filteredLessons"
+              :key="lesson.id"
+            >
+              <a href="#">
+                <img
+                  class="rounded-t-lg"
+                  :src="lesson.img"
+                  :alt="lesson.subject"
+                />
+              </a>
+              <div class="p-5">
+                <a href="#">
+                  <h5
+                    class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white"
+                  >
+                    <span class="font-bold">Subject:</span> {{ lesson.subject }}
+                  </h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Location: {{ lesson.location }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Price: £{{ lesson.price }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Spaces: {{ lesson.spaces }}
+                </p>
+                <button
+                  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-30"
+                  v-on:click="addToCart(lesson)"
+                  v-bind:disabled="lesson.spaces === 0"
+                >
+                  Add to cart
+                  <svg
+                    aria-hidden="true"
+                    class="w-4 h-4 ml-2 -mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
     </div>
 
     <script src="./lessons.js"></script>
