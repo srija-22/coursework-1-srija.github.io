@@ -5,7 +5,7 @@ var lessons =  [
       location: "India",
       price: 300,
       spaces: 5,
-      img: "imgs/1.jpg"
+      img: "./imgs/1.jpg"
     },
     {
       id: 2,
@@ -13,7 +13,7 @@ var lessons =  [
       location: "Texas",
       price: 115,
       spaces: 5,
-      img: "imgs/2.jpg"
+      img: "./imgs/2.jpg"
     },
     {
       id: 3,
@@ -21,7 +21,7 @@ var lessons =  [
       location: "Kilburn",
       price: 870,
       spaces: 5,
-      img: "imgs/3.jpg"
+      img: "./imgs/3.jpg"
     },
     {
       id: 4,
@@ -29,7 +29,7 @@ var lessons =  [
       location: "Las Vegas",
       price: 90,
       spaces: 5,
-      img: "imgs/4.jpg"
+      img: "./imgs/4.jpg"
     },
     {
       id: 5,
@@ -37,7 +37,7 @@ var lessons =  [
       location: "Real Madrid",
       price: 35,
       spaces: 5,
-      img: "imgs/5.jpg"
+      img: "./imgs/5.jpg"
     },
     {
       id: 6,
@@ -45,7 +45,7 @@ var lessons =  [
       location: "Canary Wharf",
       price: 540,
       spaces: 5,
-      img: "imgs/6.jpg"
+      img: "./imgs/6.jpg"
     },
     {
       id: 7,
@@ -53,7 +53,7 @@ var lessons =  [
       location: "Tokyo",
       price: 600,
       spaces: 5,
-      img: "imgs/7.jpg"
+      img: "./imgs/7.jpg"
     },
     {
       id: 8,
@@ -61,7 +61,7 @@ var lessons =  [
       location: "New York",
       price: 130,
       spaces: 5,
-      img: "imgs/8.jpg"
+      img: "./imgs/8.jpg"
     },
     {
       id: 9,
@@ -69,7 +69,7 @@ var lessons =  [
       location: "Berlin",
       price: 230,
       spaces: 5,
-      img: "imgs/9.jpg"
+      img: "./imgs/9.jpg"
     },
     {
       id: 10,
@@ -77,6 +77,6 @@ var lessons =  [
       location: "Cabo",
       price: 430,
       spaces: 5,
-      img: "imgs/10.jpg"
+      img: "./imgs/10.jpg"
     },
   ]
