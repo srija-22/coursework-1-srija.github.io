@@ -14,7 +14,7 @@ const app = new Vue({
             name: "",
             phone: "",
         },
-        lessons: lessons,
+        lessons: [],
     },
     methods: {
         addToCart(lesson) {
