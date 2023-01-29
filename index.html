@@ -219,7 +219,7 @@
             <div
               class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
               v-for="lesson in filteredLessons"
-              :key="lesson.id"
+              :key="lesson._id"
             >
               <a href="#">
                 <img
@@ -276,7 +276,7 @@
           <div
             class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
             v-for="cartItem in cart"
-            :key="cartItem.id"
+            :key="cartItem._id"
           >
             <a href="#">
               <img
@@ -301,7 +301,7 @@
               </p>
               <button
                 class="flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                v-on:click="removeFromCart(cartItem.id)"
+                v-on:click="removeFromCart(cartItem._id)"
               >
                 Remove from cart
                 <svg
@@ -370,7 +370,6 @@
 
     </div>
 
-    <script src="./lessons.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
