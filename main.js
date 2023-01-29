@@ -17,16 +17,17 @@ const app = new Vue({
     lessons: [],
   },
   async mounted() {
-    fetch('http://localhost:3000/all-lessons/')
-    .then((response) => {
-        return response.json()
-    })
-    .then((result) => {
-        this.lessons = result
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+    // GET - get all lessons
+    fetch("http://localhost:3000/all-lessons/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        this.lessons = result;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     addToCart(lesson) {
@@ -51,6 +52,31 @@ const app = new Vue({
       this.showCart = !this.showCart;
     },
     checkout() {
+      this.cart.forEach((item) => {
+        // POST - create new order
+        fetch("http://localhost:3000/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: this.name,
+            phone: this.phone,
+            lesson_id: item._id,
+            spaces: 1,
+          }),
+        }).then(res => console.log(res))
+        .catch(err => console.log(err));
+
+        // PUT - update lesson spaces
+        fetch("http://localhost:3000/update-lesson/" + item._id, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            spaces: 1,
+          }),
+        }).then(res => console.log(res))
+        .catch(err => console.log(err));;
+      });
+
       alert("You've checked out successfully");
 
       this.cart = [];
@@ -68,7 +94,6 @@ const app = new Vue({
 
     filteredLessons() {
       if (this.lessons.length > 0) {
-        
         let modifiedLessons = this.lessons;
 
         if (this.orderBy === "asc") {
@@ -162,19 +187,20 @@ const app = new Vue({
   },
   watch: {
     searchValue: {
-        handler(val) {
-            fetch(`http://localhost:3000/all-lessons?search=${val}`)
-            .then((response) => {
-                return response.json()
-            })
-            .then((result) => {
-                this.lessons = result
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        },
+      handler(val) {
+        // GET - search as you type and get lessons based on searchText
+        fetch(`http://localhost:3000/all-lessons?search=${val}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((result) => {
+            this.lessons = result;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       },
+    },
     name(value) {
       if (!value) {
         this.nameError = "Please enter your name";
