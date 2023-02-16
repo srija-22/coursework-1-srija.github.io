@@ -18,7 +18,7 @@ const app = new Vue({
   },
   async mounted() {
     // GET - get all lessons
-    fetch("https://srija-coursework-2.herokuapp.com/all-lessons/")
+    fetch("https://srija-coursework-2-env.eba-qfp8gb7a.eu-west-2.elasticbeanstalk.com/all-lessons/")
       .then((response) => {
         return response.json();
       })
@@ -54,7 +54,7 @@ const app = new Vue({
     checkout() {
       this.cart.forEach((item) => {
         // POST - create new order
-        fetch("https://srija-coursework-2.herokuapp.com/create-order", {
+        fetch("https://srija-coursework-2-env.eba-qfp8gb7a.eu-west-2.elasticbeanstalk.com/create-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -67,7 +67,7 @@ const app = new Vue({
         .catch(err => console.log(err));
 
         // PUT - update lesson spaces
-        fetch("https://srija-coursework-2.herokuapp.com/update-lesson/" + item._id, {
+        fetch("https://srija-coursework-2-env.eba-qfp8gb7a.eu-west-2.elasticbeanstalk.com/update-lesson/" + item._id, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -189,7 +189,7 @@ const app = new Vue({
     searchValue: {
       handler(val) {
         // GET - search as you type and get lessons based on searchText
-        fetch(`https://srija-coursework-2.herokuapp.com/all-lessons?search=${val}`)
+        fetch(`https://srija-coursework-2-env.eba-qfp8gb7a.eu-west-2.elasticbeanstalk.com/all-lessons?search=${val}`)
           .then((response) => {
             return response.json();
           })
